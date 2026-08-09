@@ -1,0 +1,27 @@
+name: Book Store Pipeline
+
+on:
+    push:
+        branches:
+              - main
+
+jobs:
+     build:
+        
+          runs-on: ubuntu-latest
+
+          steps:
+             - name: check repository
+               uses: actions/checkout@v4
+
+             - name: build image 
+               run: docker build -t nisha832/online-book-store:latest . 
+
+             - name: login to docker hub
+               uses: docker/login-action@v3 
+               with:
+                 username:
+                 password:
+             
+             - name: push image to hub
+               run: docker push nisha832/online-book-store:latest 

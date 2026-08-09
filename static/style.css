@@ -1,0 +1,157 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f6f8;
+    color: #222;
+}
+
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 40px auto;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.top-bar form {
+    display: flex;
+    flex: 1;
+    gap: 10px;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
+}
+
+.top-bar input {
+    flex: 1;
+}
+
+button,
+.add-button,
+.edit-button,
+.delete-button,
+.back-button {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 6px;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+button {
+    background: #333;
+    color: white;
+}
+
+.add-button {
+    background: #198754;
+    color: white;
+}
+
+.books {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.book-card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.book-card h2 {
+    margin-bottom: 12px;
+}
+
+.book-card p {
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+
+.actions {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.edit-button {
+    background: #0d6efd;
+    color: white;
+}
+
+.delete-button {
+    background: #dc3545;
+    color: white;
+}
+
+.book-form {
+    background: white;
+    max-width: 600px;
+    margin: auto;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.book-form label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 6px;
+    font-weight: bold;
+}
+
+.book-form button {
+    margin-top: 20px;
+    width: 100%;
+}
+
+.back-button {
+    display: block;
+    width: fit-content;
+    margin: 20px auto;
+    background: #6c757d;
+    color: white;
+}
+
+.no-books {
+    text-align: center;
+    padding: 30px;
+    background: white;
+    border-radius: 10px;
+}
+
+@media (max-width: 600px) {
+    .top-bar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .top-bar form {
+        width: 100%;
+    }
+}

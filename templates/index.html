@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Book Store</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>📚 Online Book Store</h1>
+
+        <div class="top-bar">
+
+            <form action="{{ url_for('index') }}" method="GET">
+                <input
+                    type="text"
+                    name="search"
+                    placeholder="Search by title or author..."
+                    value="{{ search }}"
+                >
+                <button type="submit">Search</button>
+            </form>
+
+            <a href="{{ url_for('add_book') }}" class="add-button">
+                + Add Book
+            </a>
+
+        </div>
+
+        {% if books %}
+
+        <div class="books">
+
+            {% for book in books %}
+
+            <div class="book-card">
+
+                <h2>{{ book.title }}</h2>
+
+                <p>
+                    <strong>Author:</strong>
+                    {{ book.author }}
+                </p>
+
+                <p>
+                    <strong>Price:</strong>
+                    ${{ book.price }}
+                </p>
+
+                <p>
+                    {{ book.description }}
+                </p>
+
+                <div class="actions">
+
+                    <a
+                        href="{{ url_for('edit_book', book_id=book.id) }}"
+                        class="edit-button"
+                    >
+                        Edit
+                    </a>
+
+                    <form
+                        action="{{ url_for('delete_book', book_id=book.id) }}"
+                        method="POST"
+                        style="display:inline;"
+                    >
+                        <button
+                            type="submit"
+                            class="delete-button"
+                            onclick="return confirm('Delete this book?')"
+                        >
+                            Delete
+                        </button>
+                    </form>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+        {% else %}
+
+        <p class="no-books">No books found.</p>
+
+        {% endif %}
+
+    </div>
+
+</body>
+</html>

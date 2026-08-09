@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+
+kind: Deployment
+
+metadata:
+     name: bookstore-deployment
+     namespace: bookstore
+
+
+spec:
+    replicas: 2
+
+    selector:
+        matchLabels:
+            app: bookstore
+
+    template:
+        metadata:
+           labels:
+             app: bookstore
+
+        spec:
+          containers:
+             - name: bookstore
+               image: nisha832/online-book-store:latest
+               imagePullPolicy: IfNotPresent
+               ports:
+                 - containerPort: 5000
+
+               envFrom:
+                - configMapRef:
+                   name: bookstore-configmap   
+               
+                - secretRef:
+                   name: bookstore-secret   
+
