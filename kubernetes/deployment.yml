@@ -26,11 +26,32 @@ spec:
                imagePullPolicy: IfNotPresent
                ports:
                  - containerPort: 5000
+               resources:
+                  requests:
+                     cpu: "200m"
+                     memory: "256Mi"
+                  limits:
+                     cpu: "500m"
+                     memory: "512Mi"  
+
+               livenessProbe:
+                  httpGet:
+                    path: /health 
+                    port: 5000
+                  initialDelaySeconds: 10
+                  periodSeconds: 10
+
+               readinessProbe:
+                  httpGet: 
+                    path: /health
+                    port: 5000
+                  initialDelaySeconds: 10
+                  periodSeconds: 10              
 
                envFrom:
                 - configMapRef:
                    name: bookstore-configmap   
                
-                - secretRef:
+                - secretRef: 
                    name: bookstore-secret   
 

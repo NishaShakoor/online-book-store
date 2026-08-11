@@ -20,8 +20,8 @@ jobs:
              - name: login to docker hub
                uses: docker/login-action@v3 
                with:
-                 username:
-                 password:
+                 username: ${{secrets.USERNAME}}
+                 password: ${{secrets.PASSWORD}}
              
              - name: push image to hub
-               run: docker push nisha832/online-book-store:latest 
+               run: docker push ${{secrets.USERNAME}}/online-book-store:latest 

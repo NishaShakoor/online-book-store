@@ -22,7 +22,7 @@ spec:
         spec:
           containers:
              - name: mysql
-               image: mysql:8.0
+               image: mysql:8.0  
                volumeMounts:
                    - name: mysql-storage
                      mountPath: /var/lib/mysql
@@ -33,6 +33,7 @@ spec:
                env:
                  - name: MYSQL_ROOT_PASSWORD
                    value: rootpassword
+                 
                  
                  - name: MYSQL_DATABASE
                    value: bookstore

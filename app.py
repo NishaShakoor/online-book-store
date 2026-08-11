@@ -5,6 +5,10 @@ from database import get_connection, init_db
 app = Flask(__name__)
 
 
+@app.route("/health")
+def health():
+    return {"status": "healthy"}, 200
+
 @app.route("/")
 def index():
     search = request.args.get("search", "")
