@@ -8,7 +8,7 @@ on:
 jobs:
      build:
         
-          runs-on: ubuntu-latest
+          runs-on: self-hosted
 
           steps:
              - name: check repository
@@ -26,3 +26,14 @@ jobs:
              - name: push image to hub
                run: docker push ${{secrets.DOCKER_USERNAME}}/online-book-store:${{github.sha}} 
               
+
+             - name: check kubernetes
+               run: kubectl get nodes
+
+             - name: deploy to kubernetes
+               run: kubectl apply -f kubernetes/
+
+             - name: check nodes status
+               run: kubectl get pods -n bookstore
+                   
+                   
