@@ -42,9 +42,7 @@ jobs:
                run: kubectl apply -f kubernetes/
 
              - name: update kubernetes image
-               run: kubectl set image deployment/bookstore-deployment \
-                    bookstore=${{secrets.DOCKER_USERNAME}}/online-book-store:${{github.sha}} \
-                    -n bookstore
+               run: kubectl set image deployment/bookstore-deployment bookstore=${{secrets.DOCKER_USERNAME}}/online-book-store:${{github.sha}} -n bookstore
                 
              - name: check deployment
                run: kubectl rollout deployment/bookstore-deployment -n bookstore    
