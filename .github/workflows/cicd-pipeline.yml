@@ -27,7 +27,8 @@ jobs:
                run: docker push ${{secrets.DOCKER_USERNAME}}/online-book-store:${{github.sha}} 
     
      deploy:
-        
+          
+          needs: build
           runs-on: self-hosted
 
           steps:
@@ -39,6 +40,14 @@ jobs:
 
              - name: deploy to kubernetes
                run: kubectl apply -f kubernetes/
+
+             - name: update kubernetes image
+               run: kubectl set image deployment/bookstore-deployment \
+                    bookstore=${{secrets.DOCKER_USERNAME}}/online-book-store:${{github.sha}} \
+                    -n bookstore
+                
+             - name: check deployment
+               run: kubectl rollout deployment/bookstore-deployment -n bookstore    
 
              - name: check nodes status
                run: kubectl get pods -n bookstore
